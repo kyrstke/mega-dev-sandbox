@@ -1,0 +1,41 @@
+---
+layout: runbook
+title: '#4471 · three problems, not one'
+owner: support desk
+status: accepted
+reviewed: 2026-10-28
+signature: 'v1.eyJzdWIiOiIxNDk2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyMDQyNDgsImV4cCI6MTc5MzI5MDY0OH0.MIj6VhEg2oAMyzHzhZHyVjPErdPQlH7fAWRtwp-IKfs'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+</script>
+
+[#4471](/kb/incidents/4471) was marked known, one issue and one fix. Read report by report, it holds
+three different problems. Each now has its own ticket.
+
+<Callout>
+Not known. Only the first problem has a fix queued.
+</Callout>
+
+## What is in it
+
+<CauseTable ticket={4471} />
+
+The table groups reports by the tenant's locale and booking form, not by intake's browser guess.
+The count is of unique report ids: the export repeats some reports. The table has no cause for the one-day reports, so it counts them under `parser` (379). Without them the parser has 374.
+
+## The three problems
+
+1. **Parser reads dates month first.** Day-first tenants get day and month swapped. This is what #4471 was named after. Ticket: [issue 1](https://github.com/kyrstke/mega-dev-sandbox/issues/1), 374 reports.
+2. **booking-v3 hint says MM/DD/YYYY.** People at day-first tenants type what the hint says. The fix is the hint, not the parser. Ticket: [issue 2](https://github.com/kyrstke/mega-dev-sandbox/issues/2), 33 reports.
+3. **Dates off by exactly one day.** Not a month swap; likely a timezone problem. The table counts these under the parser, and the desk notes mark them. Ticket: [issue 3](https://github.com/kyrstke/mega-dev-sandbox/issues/3), 5 reports (inside the table's 379).
+
+## Lessons
+
+- Merging by subject line hid two bugs inside the biggest ticket. Count by cause, not by wording.
+- Intake's tag is a guess. The tenant tells you the cause.
+
+<RenderStamp {signature} />
