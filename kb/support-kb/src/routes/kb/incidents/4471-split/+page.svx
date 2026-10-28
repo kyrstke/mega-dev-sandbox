@@ -14,10 +14,10 @@ signature: 'v1.eyJzdWIiOiIxNDk2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpY
 </script>
 
 [#4471](/kb/incidents/4471) was marked known, one issue and one fix. Read report by report, it holds
-three different problems. Each now has its own ticket.
+three different problems. The first two have a ticket; the third is counted inside the parser's ticket.
 
 <Callout>
-Not known. Only the first problem has a fix queued.
+Closed 5 Oct: the parser is fixed; the hint is won't fix, because booking-v3 was retired.
 </Callout>
 
 ## What is in it
@@ -29,9 +29,9 @@ The count is of unique report ids: the export repeats some reports. The table ha
 
 ## The three problems
 
-1. **Parser reads dates month first.** Day-first tenants get day and month swapped. This is what #4471 was named after. Ticket: [issue 1](https://github.com/kyrstke/mega-dev-sandbox/issues/1), 374 reports.
-2. **booking-v3 hint says MM/DD/YYYY.** People at day-first tenants type what the hint says. The fix is the hint, not the parser. Ticket: [issue 2](https://github.com/kyrstke/mega-dev-sandbox/issues/2), 33 reports.
-3. **Dates off by exactly one day.** Not a month swap; likely a timezone problem. The table counts these under the parser, and the desk notes mark them. Ticket: [issue 3](https://github.com/kyrstke/mega-dev-sandbox/issues/3), 5 reports (inside the table's 379).
+1. **Parser reads dates month first.** Day-first tenants get day and month swapped. This is what #4471 was named after. Ticket: [issue 1](https://github.com/kyrstke/mega-dev-sandbox/issues/1), 379 reports in the desk's table. Fixed (closed 5 Oct).
+2. **booking-v3 hint says MM/DD/YYYY.** People at day-first tenants type what the hint says. The fix is the hint, not the parser. Ticket: [issue 2](https://github.com/kyrstke/mega-dev-sandbox/issues/2), 33 reports. Won't fix: the booking-v3 form was retired.
+3. **Dates off by exactly one day.** Not a month swap; likely a timezone problem. The table counts these under the parser, and the desk notes mark them. No ticket of its own: its 5 reports are inside the table's 379 and [issue 1](https://github.com/kyrstke/mega-dev-sandbox/issues/1).
 
 ## Lessons
 
